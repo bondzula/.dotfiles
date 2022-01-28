@@ -1,0 +1,8 @@
+# exclude .git directory when --hidden is present
+.git/
+
+# Dont hide .env files when doing a search
+!.env
+
+# Show laravel.log in searches
+!laravel.log
