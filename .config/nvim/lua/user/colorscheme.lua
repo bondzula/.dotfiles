@@ -1,0 +1,34 @@
+-- local colors = require('material.colors')
+
+-- -- Set the theme style
+-- vim.g.material_style = 'darker'
+--
+-- require('material').setup({
+-- 	contrast = {
+-- 		sidebars = true,
+-- 		floating_windows = false,
+-- 	},
+-- 	italics = {
+-- 		keywords = true,
+-- 		functions = true,
+-- 	},
+-- 	contrast_filetypes = {
+-- 		"terminal",
+-- 		"packer",
+-- 		"qf",
+-- 	},
+-- 	disable = {
+-- 		borders = true,
+-- 		eob_lines = true
+-- 	},
+--
+--   custom_highlights = {
+--     -- Telescop borders should be the same color
+-- 		TelescopePromptBorder =                 { fg = colors.borders, bg = "NONE" },
+-- 		TelescopeResultsBorder =                { fg = colors.borders, bg = "NONE" },
+-- 		TelescopePreviewBorder =                { fg = colors.borders, bg = "NONE" },
+--   }
+-- })
+--
+-- -- Enable the colorscheme
+-- vim.cmd 'colorscheme material'
