@@ -1,0 +1,10 @@
+[user]
+  email = 18123522+bondzula@users.noreply.github.com
+  name = Stefan Bondzulic
+[commit]
+	template = /home/bondzula/.config/git/template
+	status = false
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
