@@ -30,7 +30,8 @@ default_border none
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/bondzula/Pictures/Wallpapers/vestrahorn-mountain-stokksnes-beach-icelandic-coast-snow-2560x1440-1327.jpg fill
+output * bg $HOME/.config/sway/wallpaper.jpg fill
+
 #
 # Example configuration:
 #
@@ -215,6 +216,14 @@ bar {
 }
 
 #
+# Screenshots with grim
+#
+bindsym Print exec IMG=/media/Share/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg && grim -t jpeg $IMG && wl-copy < $IMG
+
+# Take a Screenshot with the region select
+bindsym $mod+Print exec IMG=/media/Share/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg && grim -t jpeg -g "$(slurp)" $IMG && wl-copy < $IMG
+
+#
 # If lid is closed, disable the output
 #
 bindswitch lid:on output eDP-1 disable
@@ -224,5 +233,8 @@ bindswitch lid:off output eDP-1 enable
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Start a sway polkit for authentication
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 include /etc/sway/config.d/*

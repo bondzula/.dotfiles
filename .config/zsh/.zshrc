@@ -39,12 +39,13 @@ bindkey '^e' edit-command-line
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
-source /usr/share/fzf/shell/key-bindings.zsh
+source /usr/share/fzf/key-bindings.zsh
 
 # Fuzzy find directory to open in tmux
 bindkey -s ^p "tmux-sessionizer\n"
 
 # Aliases
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias cat="bat"
 
 # fnm - Fast Node Manager https://github.com/Schniz/fnm
@@ -53,7 +54,7 @@ eval "$(fnm env --use-on-cd)"
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 # Starship prompt
 eval "$(starship init zsh)"
