@@ -1,14 +1,16 @@
 return {
 	settings = {
 		ltex = {
-			language = "en",
-			diagnosticSeverity = "information",
-			setenceCacheSize = 2000,
+			language = "en-US",
 			additionalRules = {
 				enablePickyRules = true,
-				motherTongue = "en",
-				languageModel = "~/Documents/n-gram/",
+				languageModel = "$HOME/.n-grams/",
 			},
+			dictionary = {
+				["en-US"] = { "Ripgrep", "ripgrep", "Laravel", "laravel", "TODO", "Vue", "vue", "Vuex", "Vuex" },
+			},
+			disabledRules = {},
+			hiddenFalsePositives = {},
 		},
 	},
 }
