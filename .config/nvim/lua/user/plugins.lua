@@ -58,27 +58,18 @@ return packer.startup(function(use)
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
-  use "folke/twilight.nvim"
 
   use "ThePrimeagen/harpoon"
-
-  use "tjdevries/train.nvim"
   use "blackCauldron7/surround.nvim"
-
-  use "petertriho/nvim-scrollbar"
   use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
 
   -- Colorschemes
-  use 'folke/tokyonight.nvim'
-  use 'marko-cerovac/material.nvim'
-  use "rebelot/kanagawa.nvim"
   use({ "catppuccin/nvim", as = "catppuccin" })
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
 
@@ -95,7 +86,7 @@ return packer.startup(function(use)
   use "simrat39/symbols-outline.nvim"
 
   -- AI completion
-  use 'github/copilot.vim'
+  -- use 'github/copilot.vim'
 
   -- Telescope
   use {
@@ -105,7 +96,6 @@ return packer.startup(function(use)
     }
   }
 
-  use "nvim-telescope/telescope-fzf-writer.nvim"
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Treesitter
