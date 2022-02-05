@@ -101,14 +101,14 @@ telescope.setup({
 
     find_files = {
       find_command = { "fd", "--type", "f", "--hidden" },
-      -- attach_mappings = function(_)
-      --   telescope_actions.select:enhance({
-      --     post = function()
-      --       vim.cmd(":normal! zx")
-      --     end,
-      --   })
-      --   return true
-      -- end,
+      attach_mappings = function(_)
+        telescope_actions.select:enhance({
+          post = function()
+            vim.cmd(":normal! zx")
+          end,
+        })
+        return true
+      end,
     },
 
 
@@ -116,13 +116,6 @@ telescope.setup({
 		grep_string = fixfolds,
 		live_grep = fixfolds,
 		oldfiles = fixfolds,
-		-- Default configuration for builtin pickers goes here:
-		-- picker_name = {
-		--   picker_config_key = value,
-		--   ...
-		-- }
-		-- Now the picker_config_key will be applied every time you call this
-		-- builtin picker
 	},
 	extensions = {
 		fzf = {
