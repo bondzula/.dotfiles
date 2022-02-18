@@ -1,4 +1,5 @@
 local status_ok, which_key = pcall(require, "which-key")
+
 if not status_ok then
 	return
 end
@@ -88,121 +89,30 @@ local normalLeaderMappings = {
 		p = { "<cmd>bprevious<cr>", "Previous Buffer" },
 	},
 
-	p = {
-		name = "Packer",
-		c = { "<cmd>PackerCompile<cr>", "Compile" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update" },
-	},
-
-	g = {
-		name = "Git",
-		g = { "<cmd>Neogit<cr>", "Neogit" },
-
-		-- Stage changes
-		s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
-		S = { "<cmd>Gitsigns stage_buffer<cr>", "Stage Hunk" },
-
-		-- Undo stage
-		u = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo Staged Hunk" },
-
-		-- Reset changes
-		r = { "<cmd>Gitsigns reset_hunk<cr>", "Reset Hunk" },
-		R = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
-
-		-- Diff
-		d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
-
-		-- MISC
-		l = { "<cmd>Gitsigns blame_line<cr>", "Blame" },
-		p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
-
-		-- Telescope
-		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-	},
-
 	l = {
 		name = "LSP",
 
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-    h = { "<cmd>lua vim.diagnostics.hide()<cr>", "Hide Diagnostics" },
 	},
 
 	s = {
 		name = "Search",
 
-    p = { "<cmd>Telescope projects projects<cr>", "Find Project" },
-
     f = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Find in File"},
     F = { "<cmd>Telescope live_grep_raw live_grep_raw<cr>", "Find in Files" },
-
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Find File Symbols" },
-    S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Find Workspace Symbols" },
 	},
 
 	t = {
 		name = "Toggle",
-		-- Trouble (Show diagnostics)
-		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
-		D = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
 
 		t = { "<cmd>ToggleTerm size=20 direction=horizontal<cr>", "Terminal" },
-    T = { "<cmd>Twilight<cr>", "Twilight" },
 		n = { "<cmd>set invnumber<cr>", "Line Numbers" },
 		s = { "<cmd>set invspell<cr>", "Spelling" },
-    S = { "<cmd>SymbolsOutline<cr>", "Buffer Symbols"},
 		i = { "<cmd>IndentBlanklineToggle<cr>", "Indent Lines" },
 		e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-	},
-
-	h = {
-		a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add File" },
-		m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Menu" },
-
-		-- Navigation
-		q = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "1st Mark" },
-		w = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "2nd Mark" },
-		e = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "3rd Mark" },
-		r = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "4th Mark" },
-
-		n = { "<cmd>lua require('harpoon.ui').nav_next()<cr>", "Next Mark" },
-		p = { "<cmd>lua require('harpoon.ui').nav_prev()<cr>", "Previous Mark" },
 	},
 }
 
 which_key.register(normalLeaderMappings, normalLeaderOptions)
-
-local visualLeaderOptions = {
-	mode = "v", -- Visual mode
-	prefix = "<leader>",
-	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = true, -- use `nowait` when creating keymaps
-}
-
-local visualLeaderMappings = {
-	g = {
-		name = "Git",
-
-		-- Stage
-      s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
-	},
-
-  l = {
-    name = "LSP",
-
-      -- f = { "<cmd>lua vim.lsp.buf.ran"}
-  }
-}
-
-which_key.register(visualLeaderMappings, visualLeaderOptions)

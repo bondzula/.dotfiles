@@ -4,7 +4,6 @@ if not status_ok then
 end
 
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
 
 local telescope_actions = require("telescope.actions.set")
 
@@ -37,9 +36,6 @@ telescope.setup({
 				["<C-k>"] = actions.move_selection_previous,
 
 				["<C-c>"] = actions.close,
-
-				["<Down>"] = actions.move_selection_next,
-				["<Up>"] = actions.move_selection_previous,
 
 				["<CR>"] = actions.select_default,
 				["<C-x>"] = actions.select_horizontal,
@@ -99,18 +95,17 @@ telescope.setup({
 		buffers = fixfolds,
 		file_browser = fixfolds,
 
-    find_files = {
-      find_command = { "fd", "--type", "f", "--hidden" },
-      attach_mappings = function(_)
-        telescope_actions.select:enhance({
-          post = function()
-            vim.cmd(":normal! zx")
-          end,
-        })
-        return true
-      end,
-    },
-
+		find_files = {
+			find_command = { "fd", "--type", "f", "--hidden" },
+			attach_mappings = function(_)
+				telescope_actions.select:enhance({
+					post = function()
+						vim.cmd(":normal! zx")
+					end,
+				})
+				return true
+			end,
+		},
 
 		git_files = fixfolds,
 		grep_string = fixfolds,
@@ -118,13 +113,28 @@ telescope.setup({
 		oldfiles = fixfolds,
 	},
 	extensions = {
-		fzf = {
-			fuzzy = true, -- false will only do exact matching
-			override_generic_sorter = true, -- override the generic sorter
-			override_file_sorter = true, -- override the file sorter
-			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+		-- fzf = {
+		-- 	fuzzy = true, -- false will only do exact matching
+		-- 	override_generic_sorter = true, -- override the generic sorter
+		-- 	override_file_sorter = true, -- override the file sorter
+		-- 	case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+		-- },
+		["zf-native"] = {
+			file = { -- options for sorting file-like items
+				enable = true, -- override default telescope file sorter
+				highlight_results = true, -- highlight matching text in results
+				match_filename = true, -- enable zf filename match priority
+			},
+
+			generic = { -- options for sorting all other items
+				enable = true, -- override default telescope generic item sorter
+				highlight_results = true, -- highlight matching text in results
+				match_filename = false, -- disable zf filename match priority
+			},
 		},
 	},
 })
 
+require("telescope").load_extension("zf-native")
 require("telescope").load_extension("fzf")
+require("telescope").load_extension("git_worktree")

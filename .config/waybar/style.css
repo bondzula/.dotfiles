@@ -1,21 +1,14 @@
 * {
   border: none;
   font-family: JetBrainsMono Nerd Font;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 window#waybar {
-  /* background-color: rgba(18, 21, 29, 0.98); */
-  /* background-color: #12151d; */
-  background-color: transparent;
-  /* background-color: rgba(0, 0, 0, 0); */
-  color: #abb2bf;
+  background-color: #1E1E2E;
+  color: #ABB2BF;
   transition-property: background-color;
   transition-duration: .5s;
-}
-
-window#waybar.hidden {
-  opacity: 0.2;
 }
 
 #workspaces,
@@ -34,12 +27,8 @@ window#waybar.hidden {
 #custom-rofi,
 #custom-dunst,
 #tray {
-  background-color: #1e222a;
   padding: 0 10px;
-  margin: 2px 4px 4px 4px;
-  border: 3px solid rgba(0, 0, 0, 0);
-  border-radius: 90px;
-  background-clip: padding-box;
+  margin: 0 4px;
 }
 
 #workspaces button {

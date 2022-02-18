@@ -52,16 +52,21 @@ return packer.startup(function(use)
   use "famiu/bufdelete.nvim"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/toggleterm.nvim"
-  use "ahmedkhalf/project.nvim"
   use "lewis6991/impatient.nvim"
   use "lukas-reineke/indent-blankline.nvim"
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
+  use "AndrewRadev/splitjoin.vim"
+  use "editorconfig/editorconfig-vim"
+  use "wellle/targets.vim"
+  use { 'michaelb/sniprun', run = 'bash ./install.sh'}
+
+  -- Notes
+  use "mickael-menu/zk-nvim"
 
   use "ThePrimeagen/harpoon"
   use "blackCauldron7/surround.nvim"
-  use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
 
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
@@ -82,11 +87,9 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  use "ray-x/lsp_signature.nvim"
-  use "simrat39/symbols-outline.nvim"
 
   -- AI completion
-  -- use 'github/copilot.vim'
+  use 'github/copilot.vim'
 
   -- Telescope
   use {
@@ -97,6 +100,7 @@ return packer.startup(function(use)
   }
 
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use "natecraddock/telescope-zf-native.nvim"
 
   -- Treesitter
   use {
@@ -106,8 +110,14 @@ return packer.startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use "JoosepAlviste/nvim-ts-context-commentstring"
 
+  -- Treesitter powerd anotations
+  use "danymat/neogen"
+
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use "pwntester/octo.nvim"
+  use 'ruifm/gitlinker.nvim'
+  use "ThePrimeagen/git-worktree.nvim"
   use { 'TimUntersberger/neogit', requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }}
 
   -- Automatically set up your configuration after cloning packer.nvim

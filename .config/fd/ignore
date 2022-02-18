@@ -1,5 +1,8 @@
 # Exclude .git folder
 .git
 
+# Exclude obsidian folder
+.obsidian
+
 # Include laravel.log
 !laravel.log

@@ -19,10 +19,10 @@ set $term kitty
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu rofi -no-lazy-grab -show drun -modi drun -theme blurry
+set $menu rofi -no-lazy-grab -show drun -modi drun -theme dmenu
 
-gaps outer 5
-gaps inner 10
+gaps outer 2
+gaps inner 2
 smart_gaps off
 
 default_border none
@@ -43,10 +43,10 @@ output * bg $HOME/.config/sway/wallpaper.jpg fill
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 600 'swaylock -l -i $HOME/.config/sway/blured-wallpaper.jpg --indicator-radius 100 --indicator-thickness 5 --indicator-idle-visible' \
+         timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -218,10 +218,10 @@ bar {
 #
 # Screenshots with grim
 #
-bindsym Print exec IMG=/media/Share/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg && grim -t jpeg $IMG && wl-copy < $IMG
+bindsym Print exec IMG=/media/share/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg && grim -t jpeg $IMG && wl-copy < $IMG
 
 # Take a Screenshot with the region select
-bindsym $mod+Print exec IMG=/media/Share/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg && grim -t jpeg -g "$(slurp)" $IMG && wl-copy < $IMG
+bindsym $mod+Print exec IMG=/media/share/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg && grim -t jpeg -g "$(slurp)" $IMG && wl-copy < $IMG
 
 #
 # If lid is closed, disable the output
@@ -233,6 +233,16 @@ bindswitch lid:off output eDP-1 enable
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Media control
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioStop exec playerctl stop
+
+# Start playerctld, monitors the player activity, and act on the player lastly
+# used, otherwise this is not very usfull
+exec playerctld daemon
 
 # Start a sway polkit for authentication
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

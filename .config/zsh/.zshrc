@@ -39,6 +39,9 @@ bindkey '^e' edit-command-line
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
+# ZK
+export ZK_NOTEBOOK_DIR=/media/share/notes
+
 source /usr/share/fzf/key-bindings.zsh
 
 # Fuzzy find directory to open in tmux
@@ -47,6 +50,7 @@ bindkey -s ^p "tmux-sessionizer\n"
 # Aliases
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias cat="bat"
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
 # fnm - Fast Node Manager https://github.com/Schniz/fnm
 eval "`fnm env`"
