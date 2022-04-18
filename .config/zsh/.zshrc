@@ -42,7 +42,8 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 # ZK
 export ZK_NOTEBOOK_DIR=/media/share/notes
 
-source /usr/share/fzf/key-bindings.zsh
+source /home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh
+source /home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh
 
 # Fuzzy find directory to open in tmux
 bindkey -s ^p "tmux-sessionizer\n"
@@ -57,8 +58,7 @@ eval "`fnm env`"
 eval "$(fnm env --use-on-cd)"
 
 # Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-
+source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Starship prompt
 eval "$(starship init zsh)"
