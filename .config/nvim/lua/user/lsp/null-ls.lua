@@ -28,5 +28,11 @@ null_ls.setup({
 		-- Stylelint (css, scss, less)
 		formatting.stylelint,
 		diagnostics.stylelint,
+
+    -- YAML
+    diagnostics.yamllint,
+
+    -- Ansible
+    diagnostics.ansiblelint,
 	},
 })
