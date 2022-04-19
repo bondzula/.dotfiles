@@ -66,7 +66,7 @@ return packer.startup(function(use)
   use "mickael-menu/zk-nvim"
 
   use "ThePrimeagen/harpoon"
-  use "blackCauldron7/surround.nvim"
+  use "ur4ltz/surround.nvim"
 
   -- Colorschemes
   use({ "catppuccin/nvim", as = "catppuccin" })
