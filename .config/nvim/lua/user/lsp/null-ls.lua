@@ -14,9 +14,6 @@ null_ls.setup({
 		formatting.trim_newlines,
 		formatting.trim_whitespace,
 
-		-- Lua
-		formatting.stylua,
-
 		-- Javascript (js, jsx, vue)
 		formatting.prettierd,
 		diagnostics.eslint_d,
