@@ -1,2 +1,4 @@
 ZDOTDIR=$HOME/.config/zsh/
-. "$HOME/.cargo/env"
+
+# Setup the linuxbrew env
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
