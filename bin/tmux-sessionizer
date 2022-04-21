@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd --type d --max-depth 1 . ~/.config ~/Projects | fzf --border=none)
+    selected=$(fd --type d --max-depth 1 . ~/.config ~/Projects /mnt/bondzula/Projects | fzf --border=none)
 fi
 
 if [[ -z $selected ]]; then
