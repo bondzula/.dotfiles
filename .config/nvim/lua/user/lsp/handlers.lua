@@ -47,7 +47,7 @@ end
 
 local function lsp_highlight_document(client)
 	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
       augroup lsp_document_highlight
@@ -73,7 +73,7 @@ local function lsp_keymaps(bufnr)
 	vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, { buffer = bufnr })
 
 	-- Telescope specific
-	vim.keymap.set("n", "ga", "<cmd>Telescope lsp_code_actions theme=cursor<cr>", { buffer = bufnr })
+	vim.keymap.set("n", "ga", vim.lsp.buf.code_action, { buffer = bufnr })
 	vim.keymap.set("n", "<leader>ld", "<cmd>Telescope diagnostics<cr>", { buffer = bufnr })
 	vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references theme=cursor<cr>", { buffer = bufnr })
 	vim.keymap.set("n", "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", { buffer = bufnr })
@@ -86,11 +86,11 @@ end
 
 M.on_attach = function(client, bufnr)
 	if client.name == "tsserver" then
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.document_formatting = false
 	end
 
 	if client.name == "stylelint_lsp" then
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.document_formatting = false
 	end
 
 	lsp_keymaps(bufnr)
