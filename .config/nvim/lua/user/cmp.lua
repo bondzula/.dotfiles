@@ -57,8 +57,10 @@ cmp.setup({
 		end,
 	},
 	mapping = {
-		-- ["<C-n>"] = cmp.mapping.select_prev_item(),
-		-- ["<C-p>"] = cmp.mapping.select_next_item(),
+		-- ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+		-- ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+		["<C-n>"] = cmp.mapping.select_next_item(),
+		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -71,11 +73,11 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expandable() then
-				luasnip.expand()
-			elseif luasnip.expand_or_jumpable() then
+			-- if cmp.visible() then
+			-- 	cmp.select_next_item()
+			-- elseif luasnip.expandable() then
+			-- 	luasnip.expand()
+			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			elseif check_backspace() then
 				fallback()
@@ -130,7 +132,7 @@ cmp.setup({
 			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
-				buffer = "[Buffer]",
+        git = "[GIT]",
 				path = "[Path]",
 			})[entry.source.name]
 			return vim_item
@@ -138,8 +140,9 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "nvim_lsp" },
+    { name = "copilot" },
 		{ name = "luasnip" },
-		{ name = "buffer" },
+    { name = "git" },
 		{ name = "path" },
 	},
 	confirm_opts = {
@@ -154,3 +157,106 @@ cmp.setup({
 		native_menu = false,
 	},
 })
+
+local format = require("cmp_git.format")
+local sort = require("cmp_git.sort")
+
+require("cmp_git").setup({
+    -- defaults
+    filetypes = { "gitcommit", "octo", "NeogitCommitMessage" },
+    remotes = { "upstream", "origin" }, -- in order of most to least prioritized
+    enableRemoteUrlRewrites = false, -- enable git url rewrites, see https://git-scm.com/docs/git-config#Documentation/git-config.txt-urlltbasegtinsteadOf
+    git = {
+        commits = {
+            limit = 100,
+            sort_by = sort.git.commits,
+            format = format.git.commits,
+        },
+    },
+    github = {
+        issues = {
+            fields = { "title", "number", "body", "updatedAt", "state" },
+            filter = "all", -- assigned, created, mentioned, subscribed, all, repos
+            limit = 100,
+            state = "open", -- open, closed, all
+            sort_by = sort.github.issues,
+            format = format.github.issues,
+        },
+        mentions = {
+            limit = 100,
+            sort_by = sort.github.mentions,
+            format = format.github.mentions,
+        },
+        pull_requests = {
+            fields = { "title", "number", "body", "updatedAt", "state" },
+            limit = 100,
+            state = "open", -- open, closed, merged, all
+            sort_by = sort.github.pull_requests,
+            format = format.github.pull_requests,
+        },
+    },
+    gitlab = {
+        issues = {
+            limit = 100,
+            state = "opened", -- opened, closed, all
+            sort_by = sort.gitlab.issues,
+            format = format.gitlab.issues,
+        },
+        mentions = {
+            limit = 100,
+            sort_by = sort.gitlab.mentions,
+            format = format.gitlab.mentions,
+        },
+        merge_requests = {
+            limit = 100,
+            state = "opened", -- opened, closed, locked, merged
+            sort_by = sort.gitlab.merge_requests,
+            format = format.gitlab.merge_requests,
+        },
+    },
+    trigger_actions = {
+        {
+            debug_name = "git_commits",
+            trigger_character = ":",
+            action = function(sources, trigger_char, callback, params, git_info)
+                return sources.git:get_commits(callback, params, trigger_char)
+            end,
+        },
+        {
+            debug_name = "gitlab_issues",
+            trigger_character = "#",
+            action = function(sources, trigger_char, callback, params, git_info)
+                return sources.gitlab:get_issues(callback, git_info, trigger_char)
+            end,
+        },
+        {
+            debug_name = "gitlab_mentions",
+            trigger_character = "@",
+            action = function(sources, trigger_char, callback, params, git_info)
+                return sources.gitlab:get_mentions(callback, git_info, trigger_char)
+            end,
+        },
+        {
+            debug_name = "gitlab_mrs",
+            trigger_character = "!",
+            action = function(sources, trigger_char, callback, params, git_info)
+                return sources.gitlab:get_merge_requests(callback, git_info, trigger_char)
+            end,
+        },
+        {
+            debug_name = "github_issues_and_pr",
+            trigger_character = "#",
+            action = function(sources, trigger_char, callback, params, git_info)
+                return sources.github:get_issues_and_prs(callback, git_info, trigger_char)
+            end,
+        },
+        {
+            debug_name = "github_mentions",
+            trigger_character = "@",
+            action = function(sources, trigger_char, callback, params, git_info)
+                return sources.github:get_mentions(callback, git_info, trigger_char)
+            end,
+        },
+    },
+  }
+)

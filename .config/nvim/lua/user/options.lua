@@ -33,9 +33,13 @@ local options = {
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
 
+  inccommand = "nosplit",
+
   foldlevel = 20,
   foldmethod = 'expr',
   foldexpr = 'nvim_treesitter#foldexpr()',
+
+  laststatus = 3, -- Global status line
 }
 
 vim.opt.shortmess:append "c"

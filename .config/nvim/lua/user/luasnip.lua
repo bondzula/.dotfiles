@@ -51,69 +51,72 @@ local t = ls.text_node
 local r = ls.restore_node
 local sn = ls.snippet_node
 
-ls.snippets = {
-	all = {
-		ls.parser.parse_snippet("name", "Stefan Bondzulic"),
-		-- TODO: Make this snippet multichoise, so i can switch between my emails
-		ls.parser.parse_snippet("email", "stefanbondzulic@gmail.com"),
-	},
+-- javascript snippets
 
-	javascript = {
-		-- javascript snippets
-		s(
-			"imp",
-			fmt(
-				"import {} from '{}'",
-				{ c(1, { i(1), sn(nil, { t("{ "), i(1), t(" }") }), sn(nil, { i(1), t(" as "), i(2) }) }), i(2) }
-			)
-		),
+-- TODO [js] Call methods on either selected item, or if there is a dot
+-- TODO [js, php] different snippet for methods and functions
+-- TODO [js, php] If conditional, it would be perfect if we can have dynamic if, elseif, else, where we can add new elseif on the fly withoud saying up front how many there are
+-- TODO [js, php] try, catch, similiar
+-- TODO [js, php] Loops, for, for in, for each, while, do while
+-- TODO [js, php] Console logs
+-- TODO return ${}
+-- TODO switch to async function
 
-		-- const
-		s("c", fmt("const {} = {}", { i(1, "name"), i(2, "value") })),
+ls.add_snippets("all", {
+  ls.parser.parse_snippet("name", "Stefan Bondzulic"),
 
-		-- const destructuring
-		s("cd", {
-			t("const "),
-			c(1, { sn(nil, { t("[ "), i(1), t(" ]") }), sn(nil, { t("{ "), i(1), t(" }") }) }),
-			t(" = "),
-			i(2),
-		}),
+  -- TODO: Make this snippet multichoise, so i can switch between my emails
+  ls.parser.parse_snippet("email", "stefanbondzulic@gmail.com"),
+})
 
-		-- arrow function
-		s(
-			"fn",
-			fmt(
-				"({}) => {}",
-				{
-					i(1),
-					c(
-						2,
-						{
-							i(1),
-							sn(nil, { t("{ "), t({ "", "\t" }), i(1), t({ "", "}" }) }),
-							sn(nil, { t("{ "), t({ "", "\t" }), t("return "), i(1), t({ "", "}" }) }),
-							sn(nil, { t("({ "), t({ "", "\t" }), i(1), t({ "", "})" }) }),
-						}
-					),
-				}
-			)
-		),
+ls.add_snippets("javascript", {
+  s(
+    "imp",
+    fmt(
+      "import {} from '{}'",
+      { c(1, { i(1), sn(nil, { t("{ "), i(1), t(" }") }), sn(nil, { i(1), t(" as "), i(2) }) }), i(2) }
+    )
+  ),
 
-		-- TODO [js] Call methods on either selected item, or if there is a dot
-    -- TODO [js, php] different snippet for methods and functions
-		-- TODO [js, php] If conditional, it would be perfect if we can have dynamic if, elseif, else, where we can add new elseif on the fly withoud saying up front how many there are
-		-- TODO [js, php] try, catch, similiar
-		-- TODO [js, php] Loops, for, for in, for each, while, do while
-		-- TODO [js, php] Console logs
-    -- TODO return ${}
-    -- TODO switch to async function
-	},
+  -- const
+  s("c", fmt("const {} = {}", { i(1, "name"), i(2, "value") })),
 
-	lua = {
-		-- Luas specific snippets
-		s("req", fmt("local {} = require('{}')", { i(1), rep(1) })),
-	},
-}
+  -- const destructuring
+  s("cd", {
+    t("const "),
+    c(1, { sn(nil, { t("[ "), i(1), t(" ]") }), sn(nil, { t("{ "), i(1), t(" }") }) }),
+    t(" = "),
+  i(2),
+  }),
+
+  -- arrow function
+  s(
+    "fn",
+    fmt(
+      "({}) => {}",
+      {
+        i(1),
+        c(
+          2,
+          {
+            i(1),
+            sn(nil, { t("{ "), t({ "", "\t" }), i(1), t({ "", "}" }) }),
+            sn(nil, { t("{ "), t({ "", "\t" }), t("return "), i(1), t({ "", "}" }) }),
+            sn(nil, { t("({ "), t({ "", "\t" }), i(1), t({ "", "})" }) }),
+          }
+        ),
+      }
+    )
+  ),
+})
+
+ls.add_snippets("lua", {
+  s("req", fmt("local {} = require('{}')", { i(1), rep(1) })),
+})
+
+ls.add_snippets("markdown", {
+	s("link", fmt("({})[{}]", { i(1), i(2)})),
+})
 
 -- Keymaps
 

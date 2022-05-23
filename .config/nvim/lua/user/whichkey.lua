@@ -112,6 +112,7 @@ local normalLeaderMappings = {
 		s = { "<cmd>set invspell<cr>", "Spelling" },
 		i = { "<cmd>IndentBlanklineToggle<cr>", "Indent Lines" },
 		e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+    r = { "<cmd>Telescope resume<cr>", "Resume Telescope" },
 	},
 }
 
