@@ -6,3 +6,37 @@
 
 # Show laravel.log in searches
 !laravel.log
+
+.aws/
+.cache/
+check-ecs-exec.sh/
+.compose-cache/
+Desktop/
+.dotfiles/
+.gnupg/
+.gtkrc-2.0/
+.ignore/
+intelephense/
+.kde/
+.mozilla/
+.mysql_history/
+.nix-channels/
+.nix-defexpr/
+.nix-profile/
+.npm/
+.pki/
+Public/
+.ssh/
+Sync/
+Templates/
+.terraform.d/
+.thunderbird/
+Videos/
+
+!.config/
+!.local/
+!Documents/
+!Downloads/
+!Music/
+!Pictures/
+!Projects/

@@ -48,7 +48,3 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
 # ZK
 export ZK_NOTEBOOK_DIR=/media/share/notes
-
-# Setup the linuxbrew env
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-. "/home/bondzula/.config/cargo/env"
