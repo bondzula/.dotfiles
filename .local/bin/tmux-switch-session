@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Check if tmux is even running
+if [[ -z $(pgrep tmux) ]]; then
+	exit 0
+fi
+
+# We can pass the name of session directly
+if [[ $# -eq 1 ]]; then
+	selected=$1
+else
+	selected=$(
+		tmux ls -F '#{?session_attached,,#{session_name}}' |
+    sed '/^$/d' | # removes empty line
+    fzf --reverse --border none --height 100% --preview-window=right,60% --preview 'tmux capture-pane -pt {}'
+	)
+fi
+
+# If nothing is selected, exit
+if [[ -z $selected ]]; then
+	exit 0
+fi
+
+tmux switch-client -t $selected

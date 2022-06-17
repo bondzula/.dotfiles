@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd --type d --max-depth 5 . $HOME "/mnt/bondzula/" | fzf --height 40)
+    selected=$(fd --type d --max-depth 5 . $HOME "/mnt/bondzula/" | fzf --height 100% --border none --preview 'exa -la --no-user --no-filesize --no-permissions --no-time {}')
 fi
 
 if [[ -z $selected ]]; then
