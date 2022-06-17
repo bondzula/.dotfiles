@@ -43,7 +43,7 @@ export SAVEHIST=$HISTSIZE
 export HISTTIMEFORMAT="%Y-%m-%d %T "
 
 # FZF
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD,preview-bg:#000000'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --color=bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD --color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96 --color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 
 # ZK
